@@ -1,22 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: teacher
- * Date: 19.11.2016
- * Time: 20:43
- */
 
-$db = new SQLite3('db.sqlite');
+require_once "Task.php";
 
-if (filesize('db.sqlite') == 0) {
-    $sql = "create table foo(id INTEGER PRIMARY KEY, name, email, age)";
-    $db->exec($sql);
+$tasks = new Tasks();
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $title = $_POST['title'];
+    
+    $tasks->insertTask($title);
+
+    header('Location: /');
 }
 
-// commit
-//12312312
-$name = 'Neo';
-$sql = "INSERT INTO foo VALUES (null, '$name', 'neo@gmail.com', '23')";
-$db -> exec($sql);
+if(isset($_GET['id'])){
+    $tasks->setComplete((int) $_GET['id']);
 
-echo $db->changes();
+    header('Location: /');
+}
+
+require_once "index.view.php";
