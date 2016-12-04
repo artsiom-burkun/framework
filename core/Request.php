@@ -11,4 +11,15 @@ class Request
         
         return trim($path, '/');
     }
+
+    public static function isPost()
+    {
+        return $_SERVER['REQUEST_METHOD'] == 'POST';
+    }
+
+    public static function back()
+    {
+        $url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/';
+        header('Location: ' . $url);
+    }
 }

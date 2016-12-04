@@ -5,4 +5,4 @@ use Core\Router;
 
 require "Core/bootstrap.php";
 
-require Router::init('router')->load(Request::url());
+Router::init('router')->load(Request::url());

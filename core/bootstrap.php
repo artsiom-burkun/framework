@@ -1,13 +1,12 @@
 <?php
+use Core\App;
 use Core\Database\Connector;
 use Core\Database\QueryBuilder;
 
 require "vendor/autoload.php";
 
-$app = [];
-
-$app['config'] = require "config.php";
+App::set('config', require "config.php");
 
 
 
-$app['query'] =  new QueryBuilder(Connector::create($app['config']['database']));
+App::set('query', new QueryBuilder(Connector::create(App::get('config')['database'])));
