@@ -32,8 +32,9 @@ class QueryBuilder
             implode(', ', $keys),
             ':' .implode(', :', $keys)
         );
-        
+
         $stmt = $this->db->prepare($sql);
+        dump($fields, $keys, $sql, $stmt);
         return $stmt->execute($fields);
     }
 }
