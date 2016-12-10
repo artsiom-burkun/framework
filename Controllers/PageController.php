@@ -35,7 +35,7 @@ class PageController extends Controller
         if(isset($_GET['taskid'])){
             $id = (int) $_GET['taskid'];
 
-            $this->app['query']->delete('tasks', [
+            App::get('query')->delete('tasks', [
                 'id' => $id
             ]);
 
